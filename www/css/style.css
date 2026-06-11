@@ -1,0 +1,77 @@
+
+body, html, p, div, span, h1, h2, h3, h4, h5, h6, input, button, select, text {
+  font-family: "Garamond", "EB Garamond", "Baskerville", "Georgia", serif !important;
+}
+
+/* HERO HEADER */
+.navbar {
+  /* Using RGBA to introduce an 85% opacity backdrop (0.85) */
+  background: linear-gradient(
+    135deg,
+    rgba(15, 32, 39, 0.85),
+    rgba(32, 58, 67, 0.85),
+    rgba(44, 83, 100, 0.85)
+  ) !important;
+  
+  /* Adds a modern glassmorphism blur behind the navbar to keep text completely readable over map layers */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Optional: Ensures light text pops cleanly */
+  color: #ffffff !important; 
+}
+
+/* Ensure navbar links inherit clean high-contrast styling */
+.navbar a, .navbar .navbar-brand {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* GLASS EFFECT */
+.card {
+  border: none !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* VALUE BOXES */
+.value-box {
+  transition: .3s;
+}
+
+.value-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* MAP */
+.leaflet-container {
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* TABLES */
+.dataTables_wrapper {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* BUTTONS */
+.btn {
+  border-radius: 50px;
+  padding: 10px 25px;
+  font-weight: 600;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2E86DE;
+  border-radius: 10px;
+}
