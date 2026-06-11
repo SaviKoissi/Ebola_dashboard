@@ -125,6 +125,13 @@ The application expects a surveillance dataset containing at minimum:
 Additional variables can be incorporated as needed.
 
 ---
+## One liner to run the code 
+
+```R
+shiny::runGitHub( repo = "Ebola_dashboard", username = "SaviKoissi" )
+```
+
+---
 
 ## Authors
 
