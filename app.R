@@ -39,7 +39,7 @@ ui <- page_navbar(
     dateRangeInput(
       "date_range",
       "Reporting Window",
-      start = "2014-01-01",  # Matches your glimpse data timeline
+      start = "1976-01-01",  # Matches your glimpse data timeline
       end   = "2027-12-31"
     ),
     selectizeInput(

@@ -4,26 +4,25 @@
 # This code is written by Koissi Savi
 #===============================================
 
-
 library(shiny)
 library(readr)
 library(dplyr)
+library(stringr)
+library(lubridate)
 
 #=============================================================================
 # R/data_loader.R
-# Dynamic Rolling File Ingestion Engine
+# Dynamic Rolling File Ingestion Engine (Type-Enforced Patch)
 #=============================================================================
 
 load_ebola_data <- function() {
   # Reactive poll re-checks the data folder every 60,000 ms (1 minute)
-  # If a new file appears, it automatically updates the dashboard globally
   reactivePoll(60000, session = NULL,
                checkFunc = function() {
-                 # Target file tracking directory
                  data_files <- list.files("data/incoming/", pattern = "\\.csv$", full.names = TRUE)
                  if (length(data_files) == 0) return(NULL)
                  
-                 # Return the composite modification times of the directory to check for updates
+                 # Return modification times to evaluate if files changed on disk
                  max(file.info(data_files)$mtime)
                },
                valueFunc = function() {
@@ -38,11 +37,28 @@ load_ebola_data <- function() {
                  
                  cat(">>> Live Ingesting Backend Data Asset:", basename(latest_file), "\n")
                  
-                 read_csv(latest_file) %>%
+                 # Force columns directly to target double arrays via standard read_csv configurations
+                 raw_data <- read_csv(latest_file, col_types = cols(
+                   date = col_character(), # Read as text first to handle variable formats safely
+                   country = col_character(),
+                   suspected_cases = col_double(),
+                   confirmed_cases = col_double(),
+                   deaths = col_double(),
+                   recoveries = col_double(),
+                   case_fatality_rate_pct = col_double()
+                 ))
+                 
+                 # Format-agnostic date standardization
+                 raw_data %>%
                    mutate(
-                     date = as.Date(date),
+                     date = case_when(
+                       str_detect(date, "^\\d{4}-\\d{2}-\\d{2}$") ~ lubridate::as_date(date),
+                       str_detect(date, "/") ~ lubridate::mdy(date),
+                       TRUE ~ lubridate::as_date(date)
+                     ),
                      country = as.character(country)
-                   )
+                   ) %>%
+                   filter(!is.na(date))
                }
   )
 }
