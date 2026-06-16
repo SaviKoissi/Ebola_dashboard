@@ -12,8 +12,8 @@ mod_timeseries_ui <- function(id){
   ns <- NS(id)
   fluidPage(
     br(),
-    card(
-      card_header(class = "bg-dark text-white", "Epidemiological Curve & Aggregated Trajectories"),
+    bslib::card(
+      bslib::card_header(class = "bg-dark text-white", "Epidemiological Curve & Aggregated Trajectories"),
       echarts4rOutput(ns("trend"), height = "600px")
     )
   )
@@ -36,8 +36,10 @@ mod_timeseries_server <- function(id, data, metric){
         ) %>%
         arrange(date)
       
-      validate(
-        need(nrow(timeline_df) > 0, "No case data available within selected filter bounds.")
+      # FIX 1: Enforce explicit shiny package namespace resolution 
+      # This prevents echarts4r from intercepting the validation call
+      shiny::validate(
+        shiny::need(nrow(timeline_df) > 0, "No case data available within selected filter bounds.")
       )
       
       # Formatting clean text display flags for the series header

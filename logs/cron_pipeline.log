@@ -1,0 +1,100 @@
+[2026-06-16 08:52:03] 🚀 Starting automated relative ingestion cascade...
+[2026-06-16 08:52:03] -> Executing primary CDC web miner...
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()         masks stats::filter()
+✖ readr::guess_encoding() masks rvest::guess_encoding()
+✖ dplyr::lag()            masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+[ 2026-06-16 08:52:04.520094 ] Initializing type-enforced ingestion cascade...
+-> Extracting active live outbreak streams...
+-> Text mining historical multi-country archives (1976 - Present)...
+✔ Base data framework initialized successfully at data/ebola_hist.csv
+[2026-06-16 08:52:09] -> Syncing alternative WHO & HDX pipelines...
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()         masks stats::filter()
+✖ readr::guess_encoding() masks rvest::guess_encoding()
+✖ dplyr::lag()            masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘jsonlite’
+
+The following object is masked from ‘package:purrr’:
+
+    flatten
+
+-> Extracting official WHO Outbreak News vectors...
+   ℹ No new operational WHO updates found today.
+-> Ingesting structured tabular sheets from HDX API...
+Error in `filter()`:
+ℹ In argument: `!is.na(country)`.
+Caused by error:
+! object 'country' not found
+Backtrace:
+     ▆
+  1. ├─bind_rows(who_data, hdx_data) %>% filter(!is.na(country))
+  2. ├─dplyr::filter(., !is.na(country))
+  3. ├─dplyr:::filter.data.frame(., !is.na(country))
+  4. │ └─dplyr:::filter_impl(...)
+  5. │   └─dplyr:::filter_rows(...)
+  6. │     └─dplyr:::filter_eval(...)
+  7. │       ├─base::withCallingHandlers(...)
+  8. │       └─mask$eval_all_filter(dots_expanded, invert, env_filter)
+  9. │         └─dplyr (local) eval()
+ 10. └─base::.handleSimpleError(...)
+ 11.   └─dplyr (local) h(simpleError(msg, call))
+ 12.     └─rlang::abort(message, class = error_class, parent = parent, call = error_call)
+Execution halted
+[2026-06-16 09:24:49] 🚀 Starting automated relative ingestion cascade...
+[2026-06-16 09:24:49] -> Executing primary CDC web miner...
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()         masks stats::filter()
+✖ readr::guess_encoding() masks rvest::guess_encoding()
+✖ dplyr::lag()            masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+[ 2026-06-16 09:24:49.421545 ] Initializing type-enforced ingestion cascade...
+-> Extracting active live outbreak streams...
+-> Text mining historical multi-country archives (1976 - Present)...
+✔ Base data framework initialized successfully at data/ebola_hist.csv
+[2026-06-16 09:25:05] -> Syncing alternative WHO & HDX pipelines...
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()         masks stats::filter()
+✖ readr::guess_encoding() masks rvest::guess_encoding()
+✖ dplyr::lag()            masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘jsonlite’
+
+The following object is masked from ‘package:purrr’:
+
+    flatten
+
+-> Extracting official WHO Outbreak News vectors...
+   ℹ No new operational WHO updates found today. Using empty schema.
+-> Ingesting structured tabular sheets from HDX API...
+✔ Database successfully initialized with multi-country data feeds.
+[2026-06-16 09:25:06] -> Refreshing mtime to trigger Shiny reactivePoll...
+[2026-06-16 09:25:06] ✔ Pipeline completed successfully.
