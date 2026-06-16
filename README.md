@@ -132,6 +132,16 @@ shiny::runGitHub( repo = "Ebola_dashboard", username = "SaviKoissi" )
 ```
 
 ---
+## Automated Ingestion & Data Synchronization
+
+The pipeline features a fully automated ingestion workflow powered by a background scheduler that handles end-to-end data synchronization. When triggered, the engine executes multi-source web-scraping miners sequentially to gather live operational metrics. Rather than overwriting existing records, these newly fetched observations are dynamically processed, structured, and appended directly into the `data/incoming/ebola_hist_alt.csv` file, preserving historical tracking records while removing duplicate entries along composite coordinates. To force a hot-reload of the dashboard without manual intervention, the data refresh is driven by a unified shell controller executed directly from the project's root directory via the following command:
+
+```bash
+bash automate_pipeline.sh
+```
+
+---
+
 
 ## Authors
 
