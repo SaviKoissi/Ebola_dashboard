@@ -1,105 +1,106 @@
 date,country,suspected_cases,confirmed_cases,deaths,recoveries,case_fatality_rate_pct,source_url
-6/16/26,DR Congo,136,782,181,40,23.15,https://data.humdata.org/event/crisis-ebola-bundibugyo-virus-disease
-6/16/26,Uganda,NA,19,2,5,10.53,https://data.humdata.org/event/crisis-ebola-bundibugyo-virus-disease
-6/15/26,DR Congo,136,782,181,40,23.15,https://data.humdata.org/event/crisis-ebola-bundibugyo-virus-disease
-6/15/26,Uganda,NA,19,2,5,10.53,https://data.humdata.org/event/crisis-ebola-bundibugyo-virus-disease
-4/9/24,Sierra Leone,32,4,2,2,50,https://www.cdc.gov/ebola/outbreaks/index.html
-4/8/24,Uganda,48,46,10,12,21.74,https://www.cdc.gov/ebola/outbreaks/index.html
-4/7/24,Sierra Leone,7,6,0,4,0,https://www.cdc.gov/ebola/outbreaks/index.html
-4/6/24,Uganda,37,7,6,0,85.71,https://www.cdc.gov/ebola/outbreaks/index.html
-4/5/24,Uganda,32,22,5,13,22.73,https://www.cdc.gov/ebola/outbreaks/index.html
-4/4/24,Liberia,42,16,0,3,0,https://www.cdc.gov/ebola/outbreaks/index.html
-4/3/24,Uganda,26,0,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-4/2/24,Guinea,22,11,10,1,90.91,https://www.cdc.gov/ebola/outbreaks/index.html
-4/1/24,Liberia,30,10,4,6,40,https://www.cdc.gov/ebola/outbreaks/index.html
-3/31/24,Sierra Leone,24,7,3,0,42.86,https://www.cdc.gov/ebola/outbreaks/index.html
-3/30/24,DR Congo,19,6,6,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-3/29/24,Guinea,29,27,0,27,0,https://www.cdc.gov/ebola/outbreaks/index.html
-3/28/24,Sierra Leone,31,15,4,2,26.67,https://www.cdc.gov/ebola/outbreaks/index.html
-3/27/24,Liberia,16,13,0,2,0,https://www.cdc.gov/ebola/outbreaks/index.html
-3/26/24,Uganda,31,9,3,6,33.33,https://www.cdc.gov/ebola/outbreaks/index.html
-3/25/24,Sierra Leone,18,7,1,2,14.29,https://www.cdc.gov/ebola/outbreaks/index.html
-3/24/24,Liberia,7,4,2,0,50,https://www.cdc.gov/ebola/outbreaks/index.html
-3/23/24,Sierra Leone,42,35,2,27,5.71,https://www.cdc.gov/ebola/outbreaks/index.html
-3/22/24,Guinea,9,2,2,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-3/21/24,DR Congo,40,27,8,0,29.63,https://www.cdc.gov/ebola/outbreaks/index.html
-3/20/24,Liberia,45,16,2,11,12.5,https://www.cdc.gov/ebola/outbreaks/index.html
-3/19/24,DR Congo,22,1,0,1,0,https://www.cdc.gov/ebola/outbreaks/index.html
-3/18/24,Uganda,36,16,0,2,0,https://www.cdc.gov/ebola/outbreaks/index.html
-3/17/24,Liberia,50,21,3,8,14.29,https://www.cdc.gov/ebola/outbreaks/index.html
-3/16/24,Uganda,14,4,2,2,50,https://www.cdc.gov/ebola/outbreaks/index.html
-3/15/24,Guinea,13,4,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-3/14/24,Uganda,5,5,4,1,80,https://www.cdc.gov/ebola/outbreaks/index.html
-3/13/24,Liberia,33,19,9,10,47.37,https://www.cdc.gov/ebola/outbreaks/index.html
-3/12/24,Sierra Leone,9,3,2,1,66.67,https://www.cdc.gov/ebola/outbreaks/index.html
-3/11/24,Uganda,18,16,4,2,25,https://www.cdc.gov/ebola/outbreaks/index.html
-3/10/24,DR Congo,44,36,1,4,2.78,https://www.cdc.gov/ebola/outbreaks/index.html
-3/9/24,DR Congo,25,24,1,0,4.17,https://www.cdc.gov/ebola/outbreaks/index.html
-3/8/24,DR Congo,13,10,10,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-3/7/24,Sierra Leone,18,10,3,4,30,https://www.cdc.gov/ebola/outbreaks/index.html
-3/6/24,Uganda,10,6,5,1,83.33,https://www.cdc.gov/ebola/outbreaks/index.html
-3/5/24,Uganda,20,18,9,0,50,https://www.cdc.gov/ebola/outbreaks/index.html
-3/4/24,Uganda,9,3,3,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-3/3/24,Guinea,37,5,1,0,20,https://www.cdc.gov/ebola/outbreaks/index.html
-3/2/24,Uganda,35,32,8,5,25,https://www.cdc.gov/ebola/outbreaks/index.html
-3/1/24,Uganda,8,5,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-2/29/24,Liberia,23,6,0,4,0,https://www.cdc.gov/ebola/outbreaks/index.html
-2/28/24,Uganda,47,45,7,9,15.56,https://www.cdc.gov/ebola/outbreaks/index.html
-2/27/24,DR Congo,21,14,4,6,28.57,https://www.cdc.gov/ebola/outbreaks/index.html
-2/26/24,DR Congo,8,2,1,0,50,https://www.cdc.gov/ebola/outbreaks/index.html
-2/25/24,DR Congo,36,30,3,27,10,https://www.cdc.gov/ebola/outbreaks/index.html
-2/24/24,Uganda,5,0,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-2/23/24,Liberia,9,7,1,0,14.29,https://www.cdc.gov/ebola/outbreaks/index.html
-2/22/24,Liberia,32,11,4,7,36.36,https://www.cdc.gov/ebola/outbreaks/index.html
-2/21/24,Liberia,17,6,4,1,66.67,https://www.cdc.gov/ebola/outbreaks/index.html
-2/20/24,Guinea,30,23,5,3,21.74,https://www.cdc.gov/ebola/outbreaks/index.html
-2/19/24,Guinea,48,41,10,6,24.39,https://www.cdc.gov/ebola/outbreaks/index.html
-2/18/24,DR Congo,27,13,6,7,46.15,https://www.cdc.gov/ebola/outbreaks/index.html
-2/17/24,DR Congo,31,12,1,1,8.33,https://www.cdc.gov/ebola/outbreaks/index.html
-2/16/24,Liberia,41,36,7,7,19.44,https://www.cdc.gov/ebola/outbreaks/index.html
-2/15/24,Sierra Leone,47,31,3,17,9.68,https://www.cdc.gov/ebola/outbreaks/index.html
-2/14/24,Guinea,26,2,2,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-2/13/24,Guinea,9,0,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-2/12/24,Uganda,40,14,9,1,64.29,https://www.cdc.gov/ebola/outbreaks/index.html
-2/11/24,Liberia,19,2,1,0,50,https://www.cdc.gov/ebola/outbreaks/index.html
-2/10/24,Sierra Leone,33,33,7,3,21.21,https://www.cdc.gov/ebola/outbreaks/index.html
-2/9/24,Liberia,50,19,6,10,31.58,https://www.cdc.gov/ebola/outbreaks/index.html
-2/8/24,Uganda,32,13,8,5,61.54,https://www.cdc.gov/ebola/outbreaks/index.html
-2/7/24,DR Congo,40,10,4,4,40,https://www.cdc.gov/ebola/outbreaks/index.html
-2/6/24,DR Congo,9,8,2,1,25,https://www.cdc.gov/ebola/outbreaks/index.html
-2/5/24,Guinea,20,18,1,2,5.56,https://www.cdc.gov/ebola/outbreaks/index.html
-2/4/24,Guinea,12,5,2,1,40,https://www.cdc.gov/ebola/outbreaks/index.html
-2/3/24,Uganda,5,4,2,1,50,https://www.cdc.gov/ebola/outbreaks/index.html
-2/2/24,Liberia,28,24,2,17,8.33,https://www.cdc.gov/ebola/outbreaks/index.html
-2/1/24,Sierra Leone,45,32,9,6,28.12,https://www.cdc.gov/ebola/outbreaks/index.html
-1/31/24,Sierra Leone,37,11,8,0,72.73,https://www.cdc.gov/ebola/outbreaks/index.html
-1/30/24,Sierra Leone,32,10,7,0,70,https://www.cdc.gov/ebola/outbreaks/index.html
-1/29/24,Uganda,22,20,5,3,25,https://www.cdc.gov/ebola/outbreaks/index.html
-1/28/24,Guinea,48,46,1,43,2.17,https://www.cdc.gov/ebola/outbreaks/index.html
-1/27/24,Uganda,34,33,4,17,12.12,https://www.cdc.gov/ebola/outbreaks/index.html
-1/26/24,DR Congo,43,4,3,1,75,https://www.cdc.gov/ebola/outbreaks/index.html
-1/25/24,Guinea,12,2,2,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-1/24/24,Liberia,37,31,1,24,3.23,https://www.cdc.gov/ebola/outbreaks/index.html
-1/23/24,Uganda,32,25,5,7,20,https://www.cdc.gov/ebola/outbreaks/index.html
-1/22/24,Liberia,20,17,8,4,47.06,https://www.cdc.gov/ebola/outbreaks/index.html
-1/21/24,DR Congo,46,29,2,8,6.9,https://www.cdc.gov/ebola/outbreaks/index.html
-1/20/24,Liberia,41,20,3,15,15,https://www.cdc.gov/ebola/outbreaks/index.html
-1/19/24,Guinea,25,12,4,1,33.33,https://www.cdc.gov/ebola/outbreaks/index.html
-1/18/24,Uganda,19,10,0,3,0,https://www.cdc.gov/ebola/outbreaks/index.html
-1/17/24,Liberia,15,14,6,4,42.86,https://www.cdc.gov/ebola/outbreaks/index.html
-1/16/24,Guinea,43,40,2,34,5,https://www.cdc.gov/ebola/outbreaks/index.html
-1/15/24,Liberia,28,11,3,4,27.27,https://www.cdc.gov/ebola/outbreaks/index.html
-1/14/24,DR Congo,22,14,10,2,71.43,https://www.cdc.gov/ebola/outbreaks/index.html
-1/13/24,Liberia,23,2,0,0,0,https://www.cdc.gov/ebola/outbreaks/index.html
-1/12/24,Uganda,17,2,0,2,0,https://www.cdc.gov/ebola/outbreaks/index.html
-1/11/24,Uganda,23,20,9,5,45,https://www.cdc.gov/ebola/outbreaks/index.html
-1/10/24,DR Congo,39,7,6,0,85.71,https://www.cdc.gov/ebola/outbreaks/index.html
-1/9/24,Sierra Leone,27,19,4,1,21.05,https://www.cdc.gov/ebola/outbreaks/index.html
-1/8/24,Sierra Leone,11,1,1,0,100,https://www.cdc.gov/ebola/outbreaks/index.html
-1/7/24,DR Congo,26,8,2,1,25,https://www.cdc.gov/ebola/outbreaks/index.html
-1/6/24,Liberia,33,17,0,5,0,https://www.cdc.gov/ebola/outbreaks/index.html
-1/5/24,Uganda,6,4,1,3,25,https://www.cdc.gov/ebola/outbreaks/index.html
-1/4/24,Guinea,10,3,1,2,33.33,https://www.cdc.gov/ebola/outbreaks/index.html
-1/3/24,Uganda,10,9,6,0,66.67,https://www.cdc.gov/ebola/outbreaks/index.html
-1/2/24,Liberia,13,11,1,10,9.09,https://www.cdc.gov/ebola/outbreaks/index.html
-1/1/24,Guinea,6,5,2,1,40,https://www.cdc.gov/ebola/outbreaks/index.html
+6/20/26,DR Congo,0.00,1003.00,254.00,0.00,25.32,INRB-UMIE 2026 Live Dashboard Repository
+6/19/26,DR Congo,0.00,956.00,247.00,0.00,25.84,INRB-UMIE 2026 Live Dashboard Repository
+6/18/26,DR Congo,0.00,916.00,245.00,0.00,26.75,INRB-UMIE 2026 Live Dashboard Repository
+6/17/26,DR Congo,0.00,897.00,233.00,0.00,25.98,INRB-UMIE 2026 Live Dashboard Repository
+6/16/26,DR Congo,0.00,781.00,0.00,0.00,0.00,INRB-UMIE 2026 Live Dashboard Repository
+6/15/26,DR Congo,0.00,870.00,196.00,0.00,22.53,INRB-UMIE 2026 Live Dashboard Repository
+6/14/26,DR Congo,0.00,808.00,192.00,0.00,23.76,INRB-UMIE 2026 Live Dashboard Repository
+6/13/26,DR Congo,0.00,782.00,181.00,0.00,23.15,INRB-UMIE 2026 Live Dashboard Repository
+6/11/26,DR Congo,0.00,689.00,142.00,0.00,20.61,INRB-UMIE 2026 Live Dashboard Repository
+6/10/26,DR Congo,0.00,676.00,136.00,0.00,20.12,INRB-UMIE 2026 Live Dashboard Repository
+6/9/26,DR Congo,0.00,635.00,127.00,0.00,20.00,INRB-UMIE 2026 Live Dashboard Repository
+6/8/26,DR Congo,0.00,596.00,115.00,0.00,19.30,INRB-UMIE 2026 Live Dashboard Repository
+6/7/26,DR Congo,0.00,550.00,101.00,0.00,18.36,INRB-UMIE 2026 Live Dashboard Repository
+6/6/26,DR Congo,0.00,515.00,91.00,0.00,17.67,INRB-UMIE 2026 Live Dashboard Repository
+6/5/26,DR Congo,0.00,488.00,86.00,0.00,17.62,INRB-UMIE 2026 Live Dashboard Repository
+6/4/26,DR Congo,0.00,450.00,82.00,0.00,18.22,INRB-UMIE 2026 Live Dashboard Repository
+6/3/26,DR Congo,0.00,378.00,54.00,0.00,14.29,INRB-UMIE 2026 Live Dashboard Repository
+6/2/26,DR Congo,0.00,363.00,62.00,0.00,17.08,INRB-UMIE 2026 Live Dashboard Repository
+6/1/26,DR Congo,0.00,344.00,60.00,0.00,17.44,INRB-UMIE 2026 Live Dashboard Repository
+5/30/26,DR Congo,966.00,243.00,278.00,0.00,114.40,INRB-UMIE 2026 Live Dashboard Repository
+5/29/26,DR Congo,966.00,243.00,278.00,0.00,114.40,INRB-UMIE 2026 Live Dashboard Repository
+5/28/26,DR Congo,966.00,243.00,279.00,0.00,114.81,INRB-UMIE 2026 Live Dashboard Repository
+5/27/26,DR Congo,906.00,119.00,228.00,0.00,191.60,INRB-UMIE 2026 Live Dashboard Repository
+5/26/26,DR Congo,1064.00,111.00,251.00,0.00,226.13,INRB-UMIE 2026 Live Dashboard Repository
+5/25/26,DR Congo,998.00,100.00,243.00,0.00,243.00,INRB-UMIE 2026 Live Dashboard Repository
+5/24/26,DR Congo,893.00,101.00,228.00,0.00,225.74,INRB-UMIE 2026 Live Dashboard Repository
+5/23/26,DR Congo,905.00,95.00,225.00,0.00,236.84,INRB-UMIE 2026 Live Dashboard Repository
+5/22/26,DR Congo,872.00,83.00,209.00,0.00,251.81,INRB-UMIE 2026 Live Dashboard Repository
+5/21/26,DR Congo,745.00,79.00,177.00,0.00,224.05,INRB-UMIE 2026 Live Dashboard Repository
+5/20/26,DR Congo,672.00,57.00,160.00,0.00,280.70,INRB-UMIE 2026 Live Dashboard Repository
+5/19/26,DR Congo,575.00,51.00,148.00,0.00,290.20,INRB-UMIE 2026 Live Dashboard Repository
+5/18/26,DR Congo,516.00,33.00,131.00,0.00,396.97,INRB-UMIE 2026 Live Dashboard Repository
+5/15/26,DR Congo,80.00,13.00,0.00,0.00,0.00,INRB-UMIE 2026 Live Dashboard Repository
+5/14/26,DR Congo,0.00,0.00,57.00,0.00,0.00,INRB-UMIE 2026 Live Dashboard Repository
+3/11/24,Uganda,18.00,16.00,4.00,2.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/10/24,DR Congo,44.00,36.00,1.00,4.00,2.78,https://www.cdc.gov/ebola/outbreaks/index.html
+3/9/24,DR Congo,25.00,24.00,1.00,0.00,4.17,https://www.cdc.gov/ebola/outbreaks/index.html
+3/8/24,DR Congo,13.00,10.00,10.00,0.00,100.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/7/24,Sierra Leone,18.00,10.00,3.00,4.00,30.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/6/24,Uganda,10.00,6.00,5.00,1.00,83.33,https://www.cdc.gov/ebola/outbreaks/index.html
+3/5/24,Uganda,20.00,18.00,9.00,0.00,50.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/4/24,Uganda,9.00,3.00,3.00,0.00,100.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/3/24,Guinea,37.00,5.00,1.00,0.00,20.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/2/24,Uganda,35.00,32.00,8.00,5.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+3/1/24,Uganda,8.00,5.00,0.00,0.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/29/24,Liberia,23.00,6.00,0.00,4.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/28/24,Uganda,47.00,45.00,7.00,9.00,15.56,https://www.cdc.gov/ebola/outbreaks/index.html
+2/27/24,DR Congo,21.00,14.00,4.00,6.00,28.57,https://www.cdc.gov/ebola/outbreaks/index.html
+2/26/24,DR Congo,8.00,2.00,1.00,0.00,50.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/25/24,DR Congo,36.00,30.00,3.00,27.00,10.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/24/24,Uganda,5.00,0.00,0.00,0.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/23/24,Liberia,9.00,7.00,1.00,0.00,14.29,https://www.cdc.gov/ebola/outbreaks/index.html
+2/22/24,Liberia,32.00,11.00,4.00,7.00,36.36,https://www.cdc.gov/ebola/outbreaks/index.html
+2/21/24,Liberia,17.00,6.00,4.00,1.00,66.67,https://www.cdc.gov/ebola/outbreaks/index.html
+2/20/24,Guinea,30.00,23.00,5.00,3.00,21.74,https://www.cdc.gov/ebola/outbreaks/index.html
+2/19/24,Guinea,48.00,41.00,10.00,6.00,24.39,https://www.cdc.gov/ebola/outbreaks/index.html
+2/18/24,DR Congo,27.00,13.00,6.00,7.00,46.15,https://www.cdc.gov/ebola/outbreaks/index.html
+2/17/24,DR Congo,31.00,12.00,1.00,1.00,8.33,https://www.cdc.gov/ebola/outbreaks/index.html
+2/16/24,Liberia,41.00,36.00,7.00,7.00,19.44,https://www.cdc.gov/ebola/outbreaks/index.html
+2/15/24,Sierra Leone,47.00,31.00,3.00,17.00,9.68,https://www.cdc.gov/ebola/outbreaks/index.html
+2/14/24,Guinea,26.00,2.00,2.00,0.00,100.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/13/24,Guinea,9.00,0.00,0.00,0.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/12/24,Uganda,40.00,14.00,9.00,1.00,64.29,https://www.cdc.gov/ebola/outbreaks/index.html
+2/11/24,Liberia,19.00,2.00,1.00,0.00,50.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/10/24,Sierra Leone,33.00,33.00,7.00,3.00,21.21,https://www.cdc.gov/ebola/outbreaks/index.html
+2/9/24,Liberia,50.00,19.00,6.00,10.00,31.58,https://www.cdc.gov/ebola/outbreaks/index.html
+2/8/24,Uganda,32.00,13.00,8.00,5.00,61.54,https://www.cdc.gov/ebola/outbreaks/index.html
+2/7/24,DR Congo,40.00,10.00,4.00,4.00,40.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/6/24,DR Congo,9.00,8.00,2.00,1.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/5/24,Guinea,20.00,18.00,1.00,2.00,5.56,https://www.cdc.gov/ebola/outbreaks/index.html
+2/4/24,Guinea,12.00,5.00,2.00,1.00,40.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/3/24,Uganda,5.00,4.00,2.00,1.00,50.00,https://www.cdc.gov/ebola/outbreaks/index.html
+2/2/24,Liberia,28.00,24.00,2.00,17.00,8.33,https://www.cdc.gov/ebola/outbreaks/index.html
+2/1/24,Sierra Leone,45.00,32.00,9.00,6.00,28.12,https://www.cdc.gov/ebola/outbreaks/index.html
+1/31/24,Sierra Leone,37.00,11.00,8.00,0.00,72.73,https://www.cdc.gov/ebola/outbreaks/index.html
+1/30/24,Sierra Leone,32.00,10.00,7.00,0.00,70.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/29/24,Uganda,22.00,20.00,5.00,3.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/28/24,Guinea,48.00,46.00,1.00,43.00,2.17,https://www.cdc.gov/ebola/outbreaks/index.html
+1/27/24,Uganda,34.00,33.00,4.00,17.00,12.12,https://www.cdc.gov/ebola/outbreaks/index.html
+1/26/24,DR Congo,43.00,4.00,3.00,1.00,75.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/25/24,Guinea,12.00,2.00,2.00,0.00,100.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/24/24,Liberia,37.00,31.00,1.00,24.00,3.23,https://www.cdc.gov/ebola/outbreaks/index.html
+1/23/24,Uganda,32.00,25.00,5.00,7.00,20.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/22/24,Liberia,20.00,17.00,8.00,4.00,47.06,https://www.cdc.gov/ebola/outbreaks/index.html
+1/21/24,DR Congo,46.00,29.00,2.00,8.00,6.90,https://www.cdc.gov/ebola/outbreaks/index.html
+1/20/24,Liberia,41.00,20.00,3.00,15.00,15.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/19/24,Guinea,25.00,12.00,4.00,1.00,33.33,https://www.cdc.gov/ebola/outbreaks/index.html
+1/18/24,Uganda,19.00,10.00,0.00,3.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/17/24,Liberia,15.00,14.00,6.00,4.00,42.86,https://www.cdc.gov/ebola/outbreaks/index.html
+1/16/24,Guinea,43.00,40.00,2.00,34.00,5.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/15/24,Liberia,28.00,11.00,3.00,4.00,27.27,https://www.cdc.gov/ebola/outbreaks/index.html
+1/14/24,DR Congo,22.00,14.00,10.00,2.00,71.43,https://www.cdc.gov/ebola/outbreaks/index.html
+1/13/24,Liberia,23.00,2.00,0.00,0.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/12/24,Uganda,17.00,2.00,0.00,2.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/11/24,Uganda,23.00,20.00,9.00,5.00,45.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/10/24,DR Congo,39.00,7.00,6.00,0.00,85.71,https://www.cdc.gov/ebola/outbreaks/index.html
+1/9/24,Sierra Leone,27.00,19.00,4.00,1.00,21.05,https://www.cdc.gov/ebola/outbreaks/index.html
+1/8/24,Sierra Leone,11.00,1.00,1.00,0.00,100.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/7/24,DR Congo,26.00,8.00,2.00,1.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/6/24,Liberia,33.00,17.00,0.00,5.00,0.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/5/24,Uganda,6.00,4.00,1.00,3.00,25.00,https://www.cdc.gov/ebola/outbreaks/index.html
+1/4/24,Guinea,10.00,3.00,1.00,2.00,33.33,https://www.cdc.gov/ebola/outbreaks/index.html
+1/3/24,Uganda,10.00,9.00,6.00,0.00,66.67,https://www.cdc.gov/ebola/outbreaks/index.html
+1/2/24,Liberia,13.00,11.00,1.00,10.00,9.09,https://www.cdc.gov/ebola/outbreaks/index.html
+1/1/24,Guinea,6.00,5.00,2.00,1.00,40.00,https://www.cdc.gov/ebola/outbreaks/index.html

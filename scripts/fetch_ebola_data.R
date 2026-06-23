@@ -55,7 +55,7 @@ tryCatch({
   uga_s <- str_match(uga_block, "(\\d+)\\s*\\r?\\n?\\s*probable case")[,2] 
   
   live_snapshot <- tibble(
-    date            = c(as.Date("2026-06-13"), as.Date("2026-06-14")),
+    date            = c(as.Date("2026-06-23"), as.Date("2026-06-22")),
     country         = c("DR Congo", "Uganda"),
     suspected_cases = c(clean_val_dbl(drc_s), clean_val_dbl(uga_s)),
     confirmed_cases = c(clean_val_dbl(drc_c), clean_val_dbl(uga_c)),
@@ -154,10 +154,10 @@ tryCatch({
       arrange(desc(date), country)
     
     write_csv(final_output, output_file)
-    cat("✔ Pipeline file successfully updated at data/ebola_hist.csv\n")
+    cat("✔ Pipeline file successfully updated at data/ebola_hist2.csv\n")
   } else {
     write_csv(processed_dataset, output_file)
-    cat("✔ Base data framework initialized successfully at data/ebola_hist.csv\n")
+    cat("✔ Base data framework initialized successfully at data/ebola_hist2.csv\n")
   }
   
 }, error = function(e) {
