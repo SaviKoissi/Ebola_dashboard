@@ -72,17 +72,17 @@ load_ebola_data <- function() {
                    } else if (inherits(raw_data$date, "POSIXt")) {
                      as.Date(raw_data$date)
                    } else {
-                     # 1. Standardize character vector strings
+                     # Standardize character vector strings
                      date_chars <- str_trim(as.character(raw_data$date))
                      
-                     # 2. Match historical year-only text patterns (e.g., "1976")
+                     # Match historical year-only text patterns (e.g., "1976")
                      year_only_indices <- str_detect(date_chars, "^\\d{4}$")
                      if (any(year_only_indices, na.rm = TRUE)) {
                        date_chars[year_only_indices] <- paste0(date_chars[year_only_indices], "-01-01")
                      }
                      
-                     # 3. Flexible fallback conversion matrix handling standard structures safely
-                     parsed <- lubridate::parse_date_time(date_chars, orders = c("Ymd", "mdY", "dmy"))
+                     # Explicitly try 2-digit year structures first (mdy handles '6/22/26' natively as 2026)
+                     parsed <- lubridate::parse_date_time(date_chars, orders = c("mdy", "Ymd", "mdY", "dmy"))
                      as.Date(parsed)
                    }
                  }, error = function(e) {
