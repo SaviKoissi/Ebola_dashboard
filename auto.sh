@@ -1,0 +1,2 @@
+# Execute data pipeline updates every two days at 15:00 WAT (14:00 UTC)
+0 14 */2 * * /usr/bin/Rscript /home/ebola_dashboard/cron/fetch_ebola_data.R >> /home/savi/ebola_dashboard/logs/cron_ingest.log 2>&1
