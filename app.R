@@ -1,7 +1,7 @@
 #=============================================================================
 # app.R
 # Ebola 2026 Project - Robust Multi-Country Pipeline
-# Fixed Reactivity Tracking & Strict 2-Digit Year Century Alignment
+# Production-Grade Multi-Language Engine & Bulletproof Theme Toggle
 #=============================================================================
 
 library(shiny)
@@ -16,20 +16,30 @@ source("R/mod_timeseries.R")
 source("R/mod_country.R")
 source("R/mod_download.R")
 
-app_theme <- function(){
-  bs_theme(
-    version = 5,
-    bootswatch = "lux",
-    primary =   "#e74c3c",
-    secondary = "#2c3e50",  
-    bg = "#F8F9FA",
-    fg = "#2C3E50"
-  )
-}
+# Define a unified base theme leveraging bslib's native dark/light utility
+app_theme <- bs_theme(
+  version = 5,
+  bootswatch = "lux",
+  primary = "#e74c3c", 
+  secondary = "#2c3e50",  
+  bg = "#F8F9FA", 
+  fg = "#2C3E50"
+)
 
 ui <- page_navbar(
-  title = "🦠 Ebola Surveillance",
-  theme = app_theme(),
+  id = "nav_bar_tracker",
+  title = div(
+    div(
+      style = "display: inline-flex; align-items: center; gap: 8px;",
+      HTML('<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(-15deg);"><path d="M2 17c3-1 6-4 5-8s-3-5 1-7 6 1 6 5-1 7 4 8 4-2 4-2"/></svg>'),
+      span("Ebola Surveillance", style = "font-weight: bold;")
+    ),
+    div(
+      "African Society for Biomathematics (ASB)", 
+      style = "font-size: 11px; font-weight: normal; color: #7F8C8D; margin-top: -2px; padding-left: 32px;"
+    )
+  ),
+  theme = app_theme, 
   
   tags$head(
     includeCSS("www/css/style.css"),
@@ -40,39 +50,28 @@ ui <- page_navbar(
     title = "Surveillance Filters",
     
     div(
-      style = "display: flex; gap: 10px; margin-bottom: 5px;",
-      actionButton("btn_reset", "🔄 Reset", class = "btn-secondary btn-sm", style = "flex: 1;"),
-      actionButton("btn_lang", "🌐 FR / EN", class = "btn-outline-primary btn-sm", style = "flex: 1;")
+      style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px;",
+      selectInput(
+        "ui_lang", 
+        "Language / Langue / Língua", 
+        choices = c("English" = "EN", "Français" = "FR", "Português" = "PT"),
+        selected = "EN",
+        width = "100%"
+      ),
+      div(
+        style = "display: flex; gap: 8px; align-items: center;",
+        actionButton("btn_reset", "🔄 Reset", class = "btn-secondary btn-sm", style = "flex: 2;"),
+        # Native bslib client-side toggle: zero server overhead, guaranteed no crashes
+        input_dark_mode(id = "dark_mode_toggle", mode = "light")
+      )
     ),
     
-    # Dynamic Live Metadata Update Tracker Block
     uiOutput("live_update_badge"),
     hr(style = "margin-top: 10px; margin-bottom: 15px;"),
     
-    dateRangeInput(
-      "date_range",
-      "Reporting Window",
-      start = "2014-01-01",  
-      end   = "2027-12-31"
-    ),
-    selectizeInput(
-      "countries",
-      "Target Countries (All if Blank)",
-      choices = NULL,         
-      multiple = TRUE,       
-      options = list(placeholder = 'Select Country...')
-    ),
-    selectInput(
-      "metric",
-      "Primary Metric Matrix",
-      choices = c(
-        "Confirmed Cases" = "confirmed_cases",
-        "Suspected Cases" = "suspected_cases",
-        "Fatalities" = "deaths",
-        "Recoveries" = "recoveries"
-      ),
-      selected = "confirmed_cases"
-    )
+    uiOutput("sidebar_date_ui"),
+    uiOutput("sidebar_country_ui"),
+    uiOutput("sidebar_metric_ui")
   ),
   
   nav_panel("Explorer", mod_dashboard_ui("dashboard")),
@@ -92,103 +91,83 @@ ui <- page_navbar(
 
 server <- function(input, output, session){
   
-  current_lang <- reactiveVal("EN")
+  current_lang <- reactive({ req(input$ui_lang); input$ui_lang })
   
-  observeEvent(input$btn_lang, {
-    if (current_lang() == "EN") current_lang("FR") else current_lang("EN")
-  })
-  
-  observe({
-    lang <- current_lang()
-    if (lang == "FR") {
-      updateDateRangeInput(session, "date_range", label = "Fenêtre de rapport")
-      updateSelectizeInput(session, "countries", label = "Pays Cibles (Tous si vide)", 
-                           options = list(placeholder = 'Choisir un pays...'))
-      updateSelectInput(session, "metric", label = "Matrice des métriques principales",
-                        choices = c("Cas Confirmés" = "confirmed_cases", "Cas Suspects" = "suspected_cases", "Décès" = "deaths", "Guérisons" = "recoveries"),
-                        selected = input$metric)
-    } else {
-      updateDateRangeInput(session, "date_range", label = "Reporting Window")
-      updateSelectizeInput(session, "countries", label = "Target Countries (All if Blank)", 
-                           options = list(placeholder = 'Select Country...'))
-      updateSelectInput(session, "metric", label = "Primary Metric Matrix",
-                        choices = c("Confirmed Cases" = "confirmed_cases", "Suspected Cases" = "suspected_cases", "Fatalities" = "deaths", "Recoveries" = "recoveries"),
-                        selected = input$metric)
-    }
+  # Expose dark mode state as a simple logical reactive for underlying modules (like maps)
+  is_dark_mode <- reactive({
+    req(input$dark_mode_toggle)
+    input$dark_mode_toggle == "dark"
   })
   
   raw_ebola_data <- load_ebola_data()
   
-  # Only load country choices ONCE when data is ready to break infinite reactive loop
-  observeEvent(raw_ebola_data(), {
+  available_countries <- reactive({
     df <- raw_ebola_data()
-    if (!is.null(df) && nrow(df) > 0) {
-      available_countries <- sort(unique(df$country))
-      updateSelectizeInput(session, "countries", choices = available_countries, server = TRUE)
-    }
+    if (!is.null(df) && nrow(df) > 0) return(sort(unique(df$country)))
+    return(character(0))
   })
   
-  # Render the File-Inbound Modification Timestamp Badge dynamically
+  output$sidebar_date_ui <- renderUI({
+    label_text <- switch(current_lang(), "FR" = "Fenêtre de rapport", "PT" = "Intervalo de Relatórios", "Reporting Window")
+    dateRangeInput("date_range", label_text, start = "2014-01-01", end = "2027-12-31")
+  })
+  
+  output$sidebar_country_ui <- renderUI({
+    label_text <- switch(current_lang(), "FR" = "Pays Cibles (Tous si vide)", "PT" = "Países Alvo (Todos se em branco)", "Target Countries (All if Blank)")
+    placeholder_text <- switch(current_lang(), "FR" = "Choisir un pays...", "PT" = "Selecionar País...", "Select Country...")
+    selectizeInput("countries", label_text, choices = available_countries(), multiple = TRUE, options = list(placeholder = placeholder_text))
+  })
+  
+  output$sidebar_metric_ui <- renderUI({
+    label_text <- switch(current_lang(), "FR" = "Matrice des métriques principales", "PT" = "Matriz de Métricas Primárias", "Primary Metric Matrix")
+    
+    # PRODUCTION FIX: Recoveries completely removed from dropdown options
+    choices_vec <- switch(current_lang(),
+                          "FR" = c("Cas Confirmés" = "confirmed_cases", "Cas Suspects" = "suspected_cases", "Décès" = "deaths"),
+                          "PT" = c("Casos Confirmados" = "confirmed_cases", "Casos Suspeitos" = "suspected_cases", "Óbitos" = "deaths"),
+                          c("Confirmed Cases" = "confirmed_cases", "Suspected Cases" = "suspected_cases", "Fatalities" = "deaths")
+    )
+    selectInput("metric", label_text, choices = choices_vec, selected = "confirmed_cases")
+  })
+  
   output$live_update_badge <- renderUI({
     req(raw_ebola_data())
     df <- raw_ebola_data()
-    
-    # Calculate the latest date string found within the data rows
     max_data_date <- max(as.Date(parse_date_time(df$date, orders = c("mdy", "Ymd", "mdY", "dmy"))), na.rm = TRUE)
     formatted_date <- format(max_data_date, "%Y-%m-%d")
     
-    if (current_lang() == "FR") {
-      tags$div(
-        style = "font-size: 11px; color: #7F8C8D; text-align: center; margin-top: 5px; font-style: italic;",
-        span(paste(" Dernière mise à jour des données :", formatted_date))
-      )
-    } else {
-      tags$div(
-        style = "font-size: 11px; color: #7F8C8D; text-align: center; margin-top: 5px; font-style: italic;",
-        span(paste(" Last Data Update:", formatted_date))
-      )
-    }
+    label_text <- switch(current_lang(),
+                         "FR" = paste(" Dernière mise à jour des données :", formatted_date),
+                         "PT" = paste(" Última atualização de dados:", formatted_date),
+                         paste(" Last Data Update:", formatted_date)
+    )
+    tags$div(style = "font-size: 11px; color: #7F8C8D; text-align: center; margin-top: 5px; font-style: italic;", span(label_text))
   })
   
-  # Reset button action logic
   observeEvent(input$btn_reset, {
     req(raw_ebola_data())
     df <- raw_ebola_data()
     dates <- as.Date(parse_date_time(df$date, orders = c("mdy", "Ymd", "mdY", "dmy")))
     valid_dates <- dates[!is.na(dates)]
-    
-    updateDateRangeInput(session, "date_range", 
-                         start = min(valid_dates, default = "1976-01-01"), 
-                         end = max(valid_dates, default = "2027-12-31"))
+    updateDateRangeInput(session, "date_range", start = min(valid_dates, default = "1976-01-01"), end = max(valid_dates, default = "2027-12-31"))
     updateSelectizeInput(session, "countries", selected = character(0))
     updateSelectInput(session, "metric", selected = "confirmed_cases")
   })
   
   filtered_data <- reactive({
     req(raw_ebola_data())
-    
     df <- raw_ebola_data() %>%
-      mutate(
-        safe_date = as.Date(parse_date_time(date, orders = c("mdy", "Ymd", "mdY", "dmy")))
-      ) %>%
+      mutate(safe_date = as.Date(parse_date_time(date, orders = c("mdy", "Ymd", "mdY", "dmy")))) %>%
       filter(!is.na(safe_date))
-    
-    if (!is.null(input$date_range)) {
-      df <- df %>% filter(safe_date >= as.Date(input$date_range[1]) & safe_date <= as.Date(input$date_range[2]))
-    }
-    
-    if (!is.null(input$countries) && length(input$countries) > 0) {
-      df <- df %>% filter(country %in% input$countries)
-    }
-    
-    df <- df %>% mutate(date = safe_date) %>% select(-safe_date)
-    return(df)
+    if (!is.null(input$date_range)) df <- df %>% filter(safe_date >= as.Date(input$date_range[1]) & safe_date <= as.Date(input$date_range[2]))
+    if (!is.null(input$countries) && length(input$countries) > 0) df <- df %>% filter(country %in% input$countries)
+    df %>% mutate(date = safe_date) %>% select(-safe_date)
   })
   
-  chosen_metric <- reactive({ input$metric })
+  chosen_metric <- reactive({ req(input$metric); input$metric })
   
   mod_dashboard_server("dashboard", filtered_data, chosen_metric, current_lang)
-  mod_map_server("map", filtered_data, chosen_metric)
+  mod_map_server("map", filtered_data, chosen_metric, is_dark_mode)
   mod_timeseries_server("trend", filtered_data, chosen_metric)
   mod_country_server("country", filtered_data)
   mod_download_server("download", filtered_data)
