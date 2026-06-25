@@ -1,7 +1,7 @@
 #=============================================================================
 # app.R
 # Ebola 2026 Project - Robust Multi-Country Pipeline
-# Production-Grade Multi-Language Engine & Bulletproof Theme Toggle
+# Production-Grade Theme Deployment, Trilingual Selector & Creator Attribution
 #=============================================================================
 
 library(shiny)
@@ -16,7 +16,7 @@ source("R/mod_timeseries.R")
 source("R/mod_country.R")
 source("R/mod_download.R")
 
-# Define a unified base theme leveraging bslib's native dark/light utility
+# Base design palette boundaries leveraging bslib's native dark/light utility
 app_theme <- bs_theme(
   version = 5,
   bootswatch = "lux",
@@ -61,7 +61,6 @@ ui <- page_navbar(
       div(
         style = "display: flex; gap: 8px; align-items: center;",
         actionButton("btn_reset", "🔄 Reset", class = "btn-secondary btn-sm", style = "flex: 2;"),
-        # Native bslib client-side toggle: zero server overhead, guaranteed no crashes
         input_dark_mode(id = "dark_mode_toggle", mode = "light")
       )
     ),
@@ -86,6 +85,29 @@ ui <- page_navbar(
       src = "ASB.png", 
       style = "height: 38px; width: auto; object-fit: contain; padding-bottom: 2px;"
     )
+  ),
+  
+  #---------------------------------------------------------------------------
+  # Dynamic Layout Footer Section (Attribution & Copyright Notice)
+  #---------------------------------------------------------------------------
+  footer = tags$footer(
+    style = "border-top: 1px solid rgba(0,0,0,0.08); padding: 15px 20px; margin-top: 20px; font-size: 12px; color: #7F8C8D;",
+    div(
+      style = "display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;",
+      div(
+        HTML(paste0("&copy; ", format(Sys.Date(), "%Y"), " <strong>African Society for Biomathematics</strong>. All rights reserved."))
+      ),
+      div(
+        style = "text-align: right;",
+        "Designed & Developed by ",
+        tags$a(
+          href = "https://scholar.google.com/citations?user=-BCB6_0AAAAJ&hl=en", 
+          target = "_blank", 
+          style = "color: #e74c3c; font-weight: bold; text-decoration: none; border-bottom: 1px dotted #e74c3c;",
+          "Koissi Savi"
+        )
+      )
+    )
   )
 )
 
@@ -93,7 +115,6 @@ server <- function(input, output, session){
   
   current_lang <- reactive({ req(input$ui_lang); input$ui_lang })
   
-  # Expose dark mode state as a simple logical reactive for underlying modules (like maps)
   is_dark_mode <- reactive({
     req(input$dark_mode_toggle)
     input$dark_mode_toggle == "dark"
@@ -121,7 +142,6 @@ server <- function(input, output, session){
   output$sidebar_metric_ui <- renderUI({
     label_text <- switch(current_lang(), "FR" = "Matrice des métriques principales", "PT" = "Matriz de Métricas Primárias", "Primary Metric Matrix")
     
-    # PRODUCTION FIX: Recoveries completely removed from dropdown options
     choices_vec <- switch(current_lang(),
                           "FR" = c("Cas Confirmés" = "confirmed_cases", "Cas Suspects" = "suspected_cases", "Décès" = "deaths"),
                           "PT" = c("Casos Confirmados" = "confirmed_cases", "Casos Suspeitos" = "suspected_cases", "Óbitos" = "deaths"),
