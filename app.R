@@ -22,7 +22,7 @@ app_theme <- bs_theme(
   bootswatch = "lux",
   primary = "#e74c3c", 
   secondary = "#2c3e50",  
-  bg = "#F8F9FA", 
+  bg = "#F8F9FA", ##7F8C8D
   fg = "#2C3E50"
 )
 
@@ -36,7 +36,7 @@ ui <- page_navbar(
     ),
     div(
       "African Society for Biomathematics (ASB)", 
-      style = "font-size: 11px; font-weight: normal; color: #7F8C8D; margin-top: -2px; padding-left: 32px;"
+      style = "font-size: 11px; font-weight: normal; color: #F8F9FA; margin-top: -2px; padding-left: 32px;"
     )
   ),
   theme = app_theme, 
