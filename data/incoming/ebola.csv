@@ -1,4 +1,6 @@
 date,country,suspected_cases,confirmed_cases,deaths,recoveries,case_fatality_rate_pct,source_url
+6/24/26,DR Congo,0,1458,0,0,0,https://data.humdata.org/dataset/e902b209-b7bc-42f9-893a-294276d7cc62/resource/d90385d3-5339-4a3f-ac63-2699361edbe0/download/drc_ebola_cases_consolidated.csv
+6/23/26,DR Congo,0,1406,0,0,0,https://data.humdata.org/dataset/e902b209-b7bc-42f9-893a-294276d7cc62/resource/d90385d3-5339-4a3f-ac63-2699361edbe0/download/drc_ebola_cases_consolidated.csv
 6/22/26,DR Congo,0,1371,0,0,0,https://data.humdata.org/dataset/e902b209-b7bc-42f9-893a-294276d7cc62/resource/d90385d3-5339-4a3f-ac63-2699361edbe0/download/drc_ebola_cases_consolidated.csv
 6/21/26,DR Congo,0,1315,0,0,0,https://data.humdata.org/dataset/e902b209-b7bc-42f9-893a-294276d7cc62/resource/d90385d3-5339-4a3f-ac63-2699361edbe0/download/drc_ebola_cases_consolidated.csv
 6/20/26,DR Congo,0,1257,0,0,0,https://data.humdata.org/dataset/e902b209-b7bc-42f9-893a-294276d7cc62/resource/d90385d3-5339-4a3f-ac63-2699361edbe0/download/drc_ebola_cases_consolidated.csv

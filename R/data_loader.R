@@ -60,12 +60,7 @@ load_ebola_data <- function() {
                  
                  #-----------------------------------------------------------
                  # TYPE RESOLUTION ENGINE
-                 # Avoids case_when() type-mixing errors by processing vectors upfront
                  #-----------------------------------------------------------
-                 #=============================================================================
-                 # R/data_loader.R (Enhanced Format-Agnostic Date Conversion)
-                 #=============================================================================
-                 
                  clean_dates <- tryCatch({
                    if (inherits(raw_data$date, "Date")) {
                      raw_data$date
@@ -102,7 +97,6 @@ load_ebola_data <- function() {
                      deaths                 = coalesce(as.double(deaths), NA_real_),
                      recoveries             = coalesce(as.double(recoveries), NA_real_),
                      case_fatality_rate_pct = coalesce(as.double(case_fatality_rate_pct), NA_real_),
-                     # Handle legacy structures missing source auditing values
                      source_url             = if ("source_url" %in% colnames(raw_data)) as.character(source_url) else "Unknown Source"
                    ) %>%
                    # Structural row validation: Drop completely unparseable records safely

@@ -7,24 +7,15 @@
 library(shiny)
 library(bslib)
 library(dplyr)
-library(lubridate) 
+library(lubridate)
 
+# Source core pipeline architecture assets
 source("R/data_loader.R")
+source("R/prediction_engine.R")
 source("R/mod_dashboard.R")
 source("R/mod_map.R")
 source("R/mod_timeseries.R")
 source("R/mod_country.R")
-source("R/mod_download.R")
-
-# Base design palette boundaries leveraging bslib's native dark/light utility
-app_theme <- bs_theme(
-  version = 5,
-  bootswatch = "lux",
-  primary = "#e74c3c", 
-  secondary = "#2c3e50",  
-  bg = "#F8F9FA", ##7F8C8D
-  fg = "#2C3E50"
-)
 
 ui <- page_navbar(
   id = "nav_bar_tracker",
@@ -39,9 +30,16 @@ ui <- page_navbar(
       style = "font-size: 11px; font-weight: normal; color: #F8F9FA; margin-top: -2px; padding-left: 32px;"
     )
   ),
-  theme = app_theme, 
+  theme = bs_theme(
+    version = 5,
+    bootswatch = "lux",
+    primary = "#e74c3c", 
+    secondary = "#2c3e50",  
+    bg = "#F8F9FA", 
+    fg = "#2C3E50"
+  ), 
   
-  tags$head(
+  header = tags$head(
     includeCSS("www/css/style.css"),
     includeScript("www/js/custom.js")
   ),
@@ -58,6 +56,10 @@ ui <- page_navbar(
         selected = "EN",
         width = "100%"
       ),
+      
+      # Trilingual Historic Data Toggle Selector Switch Element
+      uiOutput("historic_toggle_ui"),
+      
       div(
         style = "display: flex; gap: 8px; align-items: center;",
         actionButton("btn_reset", "🔄 Reset", class = "btn-secondary btn-sm", style = "flex: 2;"),
@@ -77,7 +79,6 @@ ui <- page_navbar(
   nav_panel("Spatiotemporal Map", mod_map_ui("map")),
   nav_panel("Epi Trends", mod_timeseries_ui("trend")),
   nav_panel("Profiler", mod_country_ui("country")),
-  nav_panel("Data Hub", mod_download_ui("download")),
   
   nav_spacer(),
   nav_item(
@@ -87,9 +88,6 @@ ui <- page_navbar(
     )
   ),
   
-  #---------------------------------------------------------------------------
-  # Dynamic Layout Footer Section (Attribution & Copyright Notice)
-  #---------------------------------------------------------------------------
   footer = tags$footer(
     style = "border-top: 1px solid rgba(0,0,0,0.08); padding: 15px 20px; margin-top: 20px; font-size: 12px; color: #7F8C8D;",
     div(
@@ -120,17 +118,74 @@ server <- function(input, output, session){
     input$dark_mode_toggle == "dark"
   })
   
-  raw_ebola_data <- load_ebola_data()
+  data_store <- reactiveValues(df = NULL)
+  
+  # Reactive Data Ingestion Router context with evaluation checks
+  observe({
+    base_data <- load_ebola_data()
+    if (shiny::is.reactive(base_data)) {
+      df_resolved <- base_data()
+    } else {
+      df_resolved <- base_data
+    }
+    
+    if(!is.null(df_resolved) && !inherits(df_resolved, "try-error") && !is.raw(df_resolved)) {
+      if (is.data.frame(df_resolved) && nrow(df_resolved) > 0) {
+        data_store$df <- df_resolved %>% 
+          mutate(parsed_date = as.Date(parse_date_time(date, orders = c("mdy", "Ymd", "mdY", "dmy"))))
+      }
+    }
+  })
+  
+  raw_ebola_data <- reactive({
+    req(data_store$df)
+    data_store$df
+  })
+  
+  # UI Output rendering for the Trilingual Historical Toggle Switch
+  output$historic_toggle_ui <- renderUI({
+    switch_label <- switch(current_lang(),
+                           "FR" = "Visualisation des données historiques",
+                           "PT" = "Visualização de dados históricos",
+                           "Historic Data Visualization"
+    )
+    checkboxInput("show_historic", switch_label, value = FALSE)
+  })
+  
+  # Default isolation strategy bounds calculations strictly down to 2026 unless toggled
+  base_filtered_year_data <- reactive({
+    df <- raw_ebola_data()
+    if (!is.null(input$show_historic) && input$show_historic) {
+      return(df)
+    } else {
+      return(df %>% filter(year(parsed_date) == 2026))
+    }
+  })
   
   available_countries <- reactive({
-    df <- raw_ebola_data()
-    if (!is.null(df) && nrow(df) > 0) return(sort(unique(df$country)))
-    return(character(0))
+    df <- base_filtered_year_data()
+    sort(unique(df$country))
+  })
+  
+  data_date_range <- reactive({
+    df <- base_filtered_year_data()
+    valid_dates <- df$parsed_date[!is.na(df$parsed_date)]
+    if(length(valid_dates) == 0) return(list(min = as.Date("2026-01-01"), max = as.Date("2026-12-31")))
+    list(min = min(valid_dates), max = max(valid_dates))
   })
   
   output$sidebar_date_ui <- renderUI({
     label_text <- switch(current_lang(), "FR" = "Fenêtre de rapport", "PT" = "Intervalo de Relatórios", "Reporting Window")
-    dateRangeInput("date_range", label_text, start = "2014-01-01", end = "2027-12-31")
+    extents <- data_date_range()
+    
+    dateRangeInput(
+      "date_range", 
+      label_text, 
+      start = extents$min, 
+      end = extents$max,
+      min = extents$min,
+      max = extents$max
+    )
   })
   
   output$sidebar_country_ui <- renderUI({
@@ -141,7 +196,6 @@ server <- function(input, output, session){
   
   output$sidebar_metric_ui <- renderUI({
     label_text <- switch(current_lang(), "FR" = "Matrice des métriques principales", "PT" = "Matriz de Métricas Primárias", "Primary Metric Matrix")
-    
     choices_vec <- switch(current_lang(),
                           "FR" = c("Cas Confirmés" = "confirmed_cases", "Cas Suspects" = "suspected_cases", "Décès" = "deaths"),
                           "PT" = c("Casos Confirmados" = "confirmed_cases", "Casos Suspeitos" = "suspected_cases", "Óbitos" = "deaths"),
@@ -151,11 +205,8 @@ server <- function(input, output, session){
   })
   
   output$live_update_badge <- renderUI({
-    req(raw_ebola_data())
-    df <- raw_ebola_data()
-    max_data_date <- max(as.Date(parse_date_time(df$date, orders = c("mdy", "Ymd", "mdY", "dmy"))), na.rm = TRUE)
-    formatted_date <- format(max_data_date, "%Y-%m-%d")
-    
+    extents <- data_date_range()
+    formatted_date <- format(extents$max, "%Y-%m-%d")
     label_text <- switch(current_lang(),
                          "FR" = paste(" Dernière mise à jour des données :", formatted_date),
                          "PT" = paste(" Última atualização de dados:", formatted_date),
@@ -165,32 +216,33 @@ server <- function(input, output, session){
   })
   
   observeEvent(input$btn_reset, {
-    req(raw_ebola_data())
-    df <- raw_ebola_data()
-    dates <- as.Date(parse_date_time(df$date, orders = c("mdy", "Ymd", "mdY", "dmy")))
-    valid_dates <- dates[!is.na(dates)]
-    updateDateRangeInput(session, "date_range", start = min(valid_dates, default = "1976-01-01"), end = max(valid_dates, default = "2027-12-31"))
+    extents <- data_date_range()
+    updateCheckboxInput(session, "show_historic", value = FALSE)
+    updateDateRangeInput(session, "date_range", start = extents$min, end = extents$max)
     updateSelectizeInput(session, "countries", selected = character(0))
     updateSelectInput(session, "metric", selected = "confirmed_cases")
   })
   
   filtered_data <- reactive({
-    req(raw_ebola_data())
-    df <- raw_ebola_data() %>%
-      mutate(safe_date = as.Date(parse_date_time(date, orders = c("mdy", "Ymd", "mdY", "dmy")))) %>%
-      filter(!is.na(safe_date))
-    if (!is.null(input$date_range)) df <- df %>% filter(safe_date >= as.Date(input$date_range[1]) & safe_date <= as.Date(input$date_range[2]))
-    if (!is.null(input$countries) && length(input$countries) > 0) df <- df %>% filter(country %in% input$countries)
-    df %>% mutate(date = safe_date) %>% select(-safe_date)
+    df <- base_filtered_year_data() %>% filter(!is.na(parsed_date))
+    
+    if (!is.null(input$date_range)) {
+      df <- df %>% filter(parsed_date >= as.Date(input$date_range[1]) & parsed_date <= as.Date(input$date_range[2]))
+    }
+    if (!is.null(input$countries) && length(input$countries) > 0) {
+      df <- df %>% filter(country %in% input$countries)
+    }
+    
+    df %>% mutate(date = parsed_date) %>% select(-parsed_date)
   })
   
   chosen_metric <- reactive({ req(input$metric); input$metric })
   
+  # Multi-Module Execution Environment Mount Points
   mod_dashboard_server("dashboard", filtered_data, chosen_metric, current_lang)
   mod_map_server("map", filtered_data, chosen_metric, is_dark_mode)
-  mod_timeseries_server("trend", filtered_data, chosen_metric)
+  mod_timeseries_server("trend", filtered_data, chosen_metric, current_lang)
   mod_country_server("country", filtered_data)
-  mod_download_server("download", filtered_data)
 }
 
 shinyApp(ui, server)

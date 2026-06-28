@@ -10,7 +10,7 @@ library(stringr)
 library(lubridate)
 
 # Ensure absolute execution context path matches your deployment workspace
-setwd("/Ebola/Ebola_dashboard") 
+#setwd("/Ebola/Ebola_dashboard") 
 
 target_dir <- "data/incoming"
 if (!dir.exists(target_dir)) dir.create(target_dir, recursive = TRUE)

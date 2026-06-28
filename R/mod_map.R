@@ -26,7 +26,6 @@ mod_map_server <- function(id, data, metric, is_dark){
     output$map <- renderLeaflet({
       req(data(), metric())
       
-      # 1. Aggregate spatial records safely
       aggregated_data <- data() %>%
         group_by(country) %>%
         summarise(
@@ -45,24 +44,20 @@ mod_map_server <- function(id, data, metric, is_dark){
           )
         )
       
-      # 2. Extract boundaries and combine structural indices
       world <- ne_countries(scale = "medium", returnclass = "sf")
       
       map_df <- world %>%
         left_join(aggregated_data, by = c("name" = "join_country")) %>%
         filter(!is.na(selected_metric_total))
       
-      # Set theme tile dynamically based on user state selections
       tile_provider <- if(is_dark()) providers$CartoDB.DarkMatter else providers$CartoDB.Positron
       
       if(nrow(map_df) == 0) {
         return(leaflet() %>% addProviderTiles(tile_provider) %>% setView(0, 0, 2))
       }
       
-      # Apply dynamic scaling palettes across active clusters
       pal <- colorNumeric("YlOrRd", domain = map_df$selected_metric_total, na.color = "transparent")
       
-      # 3. Build HTML popups utilizing the synchronized inline filovirus SVG icon
       popup_labels <- lapply(seq_len(nrow(map_df)), function(i) {
         HTML(sprintf(
           "<div style='font-family: Arial, sans-serif; padding: 5px; min-width: 180px;'>
@@ -87,7 +82,6 @@ mod_map_server <- function(id, data, metric, is_dark){
       
       metric_label_clean <- stringr::str_to_title(gsub("_", " ", metric()))
       
-      # 4. Canvas Assembly with responsive bounds
       leaflet(map_df) %>%
         addProviderTiles(tile_provider) %>%
         addPolygons(
